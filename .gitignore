@@ -3,6 +3,10 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+#added by me 
+
+Nicole-analyse.ipynb
+Nicole-Documents
 # C extensions
 *.so
 
