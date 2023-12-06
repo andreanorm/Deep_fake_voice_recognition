@@ -1,0 +1,6 @@
+librosa
+pandas
+numpy
+matplotlib
+tqdm.notebook
+xgboost
