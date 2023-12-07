@@ -6,6 +6,10 @@ __pycache__/
 # C extensions
 *.so
 
+notebook_EAL.ipynb
+.gitignore
+data
+
 # Distribution / packaging
 .Python
 build/
