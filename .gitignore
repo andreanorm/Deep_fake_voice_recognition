@@ -161,3 +161,8 @@ cython_debug/
 
 Jupyter
 .DS_Store
+Data/*
+Paper/*
+Eminem_(RVC_-_1000_Epochs)/*
+.DS_Store
+.ipynb_checkpoints/*
