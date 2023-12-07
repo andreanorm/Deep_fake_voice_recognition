@@ -1,6 +1,6 @@
 librosa
 xgboost
 pandas
-sklearn
-matplotlib.pyplot
+scikit-learn
+matplotlib
 seaborn
