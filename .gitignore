@@ -7,8 +7,6 @@ __pycache__/
 *.so
 
 notebook_EAL.ipynb
-.gitignore
-data
 
 # Distribution / packaging
 .Python
