@@ -1,16 +1,8 @@
 import pandas as pd
 import numpy as np
 import librosa
-import os
-# from sklearn.model_selection import train_test_split, cross_val_score, GridSearchCV, StratifiedKFold, cross_validate, RepeatedStratifiedKFold
-# from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
-from xgboost import XGBClassifier
-import time
-# from tpot import TPOTClassifier
-# from tqdm.auto import tqdm
-# from google.cloud import storage
 
-from fastapi import FastAPI, UploadFile, File
+from fastapi import FastAPI, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.encoders import jsonable_encoder
 from fastapi.responses import JSONResponse
@@ -61,7 +53,7 @@ def preprocess_data(y, sr, label):
     return df_indiv
 
 def load_model():
-    latest_model = joblib.load("models/20231212-123732.pkl")
+    latest_model = joblib.load("models/last_XGB")
     return latest_model
 
 app.state.model = load_model()
@@ -84,13 +76,14 @@ async def predict(
     X_processed = df_processed.drop(columns="LABEL")
 
     y_pred = pd.DataFrame(model.predict(X=X_processed)).value_counts(normalize=True)
-    if y_pred.index[0][0] == 0:
+    if y_pred.index[0][0] == 1:
         prediction = "REAL"
     else:
         prediction = "FAKE"
-    proba = y_pred[0]
+    proba = y_pred[y_pred.index[0]]
 
     return JSONResponse(content=jsonable_encoder({"prediction":prediction, "probability":round(proba,2)}))
+    # return {"hello":"hello", "prediction":prediction, "probability":round(proba,2)}
 
 
 @app.get("/")
